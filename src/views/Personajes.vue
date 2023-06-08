@@ -2,7 +2,7 @@
   <div class="characters">
     <h1 class="title">PERSONAJES</h1>
     <div class="list">
-      <h3 class="character" v-for="character in characters" :key="character.name" @click="redirect($event)">{{character.name}}</h3>
+      <h3 class="character" v-for="character in characters" :key="character.name" @click="redirect(character.url)">{{character.name}}</h3>
     </div>
     <button @click="addCharacters" class="addBtn" v-if="page<9">Buscar más Personajes</button>
     <h1 class="title" v-else>No Hay más personajes</h1>
@@ -17,8 +17,6 @@ export default {
     return{
       characters:[],
       page: 1,
-      index:1,
-      selected:0,
     }
   },
   methods:{
@@ -31,10 +29,9 @@ export default {
         });
       })
     },
-    redirect(event){
-      this.selected = this.characters.find(e=>e.name == event.target.innerHTML)
-      this.index = ((this.selected.url).match(/\d+/))[0]
-      this.$router.push(`/characters/${this.index}`)
+    redirect(url){
+      let index = (url.match(/\d+/))[0]
+      this.$router.push(`/characters/${index}`)
     },
     addCharacters(){
         this.page++

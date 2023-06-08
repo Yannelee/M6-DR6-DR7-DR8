@@ -12,7 +12,7 @@
       <h3>{{info.mass}} kg</h3>
       <hr>
       <small>Peliculas</small>
-      <h3>{{filmList.length}}</h3>
+      <h3>{{info.films.length}}</h3>
     </div>
     <router-link to="/characters" class="backButton">Volver</router-link>
   </div>
@@ -25,8 +25,9 @@ export default {
   props:['id'],
   data: function(){
     return{
-      info:'',
-      filmList:[]
+      info:{
+        films:[]
+      },
     }
   },
   computed:{
@@ -36,10 +37,7 @@ export default {
   created () {
     axios
       .get(`https://swapi.dev/api/people/${this.id}`)
-      .then(response => {
-        this.info = response.data
-        response.data.films.forEach(element => this.filmList.push(element))
-      })
+      .then(response => this.info = response.data)
   },
 }
 </script>

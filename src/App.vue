@@ -3,9 +3,11 @@
     <nav>
       <router-link to="/">Inicio</router-link> |
       <router-link to="/characters">Personajes</router-link> |
-      <router-link to="/contact">Contact</router-link>
+      <router-link to="/contact">Contacto</router-link>
     </nav>
-    <router-view/>
+    <transition name="router-anim" mode="out-in">
+      <router-view/>
+    </transition>
   </div>
 </template>
 
@@ -39,5 +41,33 @@ nav a {
 
 nav a.router-link-exact-active {
   color: #42b983;
+}
+
+.router-anim-enter-active{
+ animation: coming 1s;
+ animation-delay: .5s;
+ opacity:0;
+}
+.router-anim-leave-active{
+ animation: going 1s;
+}
+@keyframes going{
+ 0%{
+ transform: translateX(0)
+ }
+ 100%{
+ transform: translateX(-50px);
+ opacity:0;
+ }
+}
+@keyframes coming{
+ from{
+ transform: translateX(-50px);
+ opacity:0;
+ }
+ to{
+ transform: translateX(0px);
+ opacity:1;
+ }
 }
 </style>

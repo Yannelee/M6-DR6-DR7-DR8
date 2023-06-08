@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Contact from '@/views/Contact.vue'
-import Inicio from "@/views/Inicio.vue"
-import Personajes from "@/views/Personajes.vue"
-import Personaje from "@/views/Personaje.vue"
-import NotFound from "@/views/NotFound.vue"
+
+const CONTACT = () => import (/* webpackChunkName: 'contact' */ '@/views/Contact.vue')
+const PERSONAJES = () => import (/* webpackChunkName: 'personajes' */ '@/views/Personajes.vue')
+const PERSONAJE = () => import(/* webpackChunkName: 'personaje' */ '@/views/Personaje.vue')
+const NOTFOUND = () => import(/* webpackChunkName: 'notFound' */ '@/views/NotFound.vue')
 
 Vue.use(VueRouter)
 
@@ -12,31 +12,30 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: Inicio
+    component: ()=> import(/* webpackChunkName: 'inicio' */ '@/views/Inicio.vue')
   },
   {
     path: '/contact',
     name: 'contacto',
-    component: Contact,
+    component: CONTACT,
   },
   {
     path: '/characters',
     name: 'characters',
-    component: Personajes,
+    component: PERSONAJES,
     alias: ['/personajes', '/people']
   },
   {
     path: '/characters/:id',
     name: 'character',
-    component: Personaje,
+    component: PERSONAJE,
     props: true
   },
   {
     path: '*',
     name: 'notFound',
-    component: NotFound,
+    component: NOTFOUND,
   },
-
 ]
 
 const router = new VueRouter({
