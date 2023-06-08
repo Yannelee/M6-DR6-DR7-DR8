@@ -1,10 +1,11 @@
 <template>
   <div class="characters">
     <h1 class="title">PERSONAJES</h1>
-    <button @click="addCharacters">Buscar más Personajes</button>
     <div class="list">
       <h3 class="character" v-for="character in characters" :key="character.name" @click="redirect($event)">{{character.name}}</h3>
     </div>
+    <button @click="addCharacters" class="addBtn" v-if="page<9">Buscar más Personajes</button>
+    <h1 class="title" v-else>No Hay más personajes</h1>
   </div>
 </template>
 
@@ -18,15 +19,9 @@ export default {
       page: 1,
       index:1,
       selected:0,
-      regex: /\d+/
     }
   },
   methods:{
-    redirect(event){
-      this.selected = this.characters.find(e=>e.name == event.target.innerHTML)
-      this.index = ((this.selected.url).match(this.regex))[0]
-      this.$router.push(`/characters/${this.index}`)
-    },
     petition(){
       axios
       .get(`https://swapi.dev/api/people?page=${this.page}`)
@@ -36,9 +31,14 @@ export default {
         });
       })
     },
+    redirect(event){
+      this.selected = this.characters.find(e=>e.name == event.target.innerHTML)
+      this.index = ((this.selected.url).match(/\d+/))[0]
+      this.$router.push(`/characters/${this.index}`)
+    },
     addCharacters(){
-      this.page++
-      this.petition()
+        this.page++
+        this.petition()
     }
   },
   created() {
@@ -73,5 +73,19 @@ body{
   cursor: pointer;
   background-color: yellow;
   color: black;
+}
+.addBtn{
+  margin-top: 1rem;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: bold;
+  padding: .5rem 1rem;
+  border: .0625rem solid white;
+  border-radius: .4rem;
+  background-color: white;
+}
+.addBtn:hover{
+  background-color: yellow;
+  border: .0625rem solid yellow;
 }
 </style>

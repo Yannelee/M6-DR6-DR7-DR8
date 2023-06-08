@@ -22,6 +22,7 @@
 import axios from "axios"
 export default {
   name: 'personaje-comp',
+  props:['id'],
   data: function(){
     return{
       info:'',
@@ -29,9 +30,6 @@ export default {
     }
   },
   computed:{
-    id(){
-      return parseInt(this.$route.params.id)
-    },
   },
   methods:{
   },
@@ -58,6 +56,7 @@ export default {
 .description{
   width: 50%;
   margin: 1rem auto;
+  margin-bottom: 2rem;
   padding: 1rem;
   background-color: #ffffffb0;
   border-radius: 1rem;
@@ -66,11 +65,15 @@ export default {
 .backButton{
   text-decoration: none;
   cursor: pointer;
-  color: white;
   font-size: large;
   font-weight: bold;
+  padding: .5rem 1rem;
+  border: .0625rem solid white;
+  border-radius: .4rem;
+  background-color: white;
 }
 .backButton:hover{
-  text-shadow: 0 0 .3rem yellow, 0 0 .4rem black;
+  background-color: yellow;
+  border: none
 }
 </style>

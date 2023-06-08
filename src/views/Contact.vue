@@ -1,7 +1,7 @@
 <template>
   <div class="contacto">
     <h1 class="title">Contáctanos</h1>
-    <h3>Elige tu lado</h3>
+    <h3 class="subtitle">ELIGE TU LADO</h3>
     <button class="btn jediBtn" @click="jediBtn">JEDI</button>
     <button class="btn sithBtn" @click="sithBtn">SITH</button>
 
@@ -27,7 +27,7 @@
         <label for="mensaje" class="contactLabel">Mensaje</label>
         <textarea name="" id="" class="contactInput" v-model="msg"></textarea>
 
-        <button class="enviarBtn" @click.prevent="sendContact">Enviar</button>
+        <button class="btn enviarBtn" @click.prevent="sendContact">Enviar</button>
       </form>
     </div>
 
@@ -83,7 +83,7 @@ export default {
 .contacto{
   color: white;
 }
-.title{
+.title, .subtitle{
   text-shadow: 0 0 .8rem black;
 }
 .jedi>input, .sith>input, .selectText{
@@ -91,25 +91,26 @@ export default {
   margin-left: 2rem;
 }
 .btn{
-  padding: 1rem;
+  padding: .7rem;
   font-size: large;
   font-weight: bold;
   margin: 1rem 3rem;
   width: 30%;
   border: none;
-  border-radius: .2rem;
+  border-radius: .5rem;
   cursor: pointer;
+  background-color: white;
+  
+}
+.jediBtn:hover{
+  background-color: limegreen;
+  box-shadow: 0 0 .3rem lightgreen;
   color: white;
 }
-.jediBtn{
-  background-color: green;
-}
-.sithBtn{
+.sithBtn:hover{
   background-color: red;
-}
-.btn:hover{
-  box-shadow: 0 0 .5rem white;
-  color: black;
+  box-shadow: 0 0 .3rem red;
+  color: white;
 }
 .contactForm{
   background-color: #ffffffbd;
@@ -136,12 +137,6 @@ textarea.contactInput{
   max-width: 100%;
 }
 .enviarBtn{
-  font-weight: bold;
-  background-color: yellow;
-  padding: 1rem 2rem;
-  margin-top: 1rem;
-  border: none;
-  border-radius: .2rem;
-  cursor: pointer;
+  margin-left: 0;
 }
 </style>

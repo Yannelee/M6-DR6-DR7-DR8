@@ -1,4 +1,4 @@
-# dr
+# DRILLING SESION 7 MODULO 6 VUE - ALIAS-PROPS RUTAS-SWAPI
 
 ## Project setup
 ```

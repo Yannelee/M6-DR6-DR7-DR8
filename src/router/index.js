@@ -4,6 +4,7 @@ import Contact from '@/views/Contact.vue'
 import Inicio from "@/views/Inicio.vue"
 import Personajes from "@/views/Personajes.vue"
 import Personaje from "@/views/Personaje.vue"
+import NotFound from "@/views/NotFound.vue"
 
 Vue.use(VueRouter)
 
@@ -22,11 +23,18 @@ const routes = [
     path: '/characters',
     name: 'characters',
     component: Personajes,
+    alias: ['/personajes', '/people']
   },
   {
     path: '/characters/:id',
     name: 'character',
     component: Personaje,
+    props: true
+  },
+  {
+    path: '*',
+    name: 'notFound',
+    component: NotFound,
   },
 
 ]
